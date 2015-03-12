@@ -52,8 +52,6 @@
     <script type="text/javascript" src="../Librerias/lib/validator/numeric.js"></script>
     <script type="text/javascript" src="../Librerias/lib/validator/porcentajeMax.js"></script>
     <script type="text/javascript" src="../Librerias/lib/validator/porcentajeMin.js"></script>
-    <script type="text/javascript" src="../Librerias/lib/validator/integerN.js"></script>
-    <script type="text/javascript" src="../Librerias/lib/validator/porcentajeAc.js"></script>
     <!-- JS -->
     <script type="text/javascript" src="../Librerias/lib/funcion.js"></script>
     
@@ -206,7 +204,7 @@
                                    <?php
  
                                          // Seleciona la tabla de noticias
-                                        $noticia = $conexion->consulta("SELECT * FROM noticias, inscripcion_proyecto, proyecto, gestion WHERE inscripcion_proyecto.CODIGO_P = proyecto.CODIGO_P and proyecto.ID_G = gestion.ID_G and DATE (FECHA_N) >= DATE(FECHA_INICIO_G) and DATE(FECHA_N) <= DATE(FECHA_FIN_G) ORDER BY ID_N DESC");
+                                        $noticia = $conexion->consulta("SELECT * FROM noticias ORDER BY ID_N DESC");
 
                                 
                                         while ($noticias=mysql_fetch_array($noticia)) 
@@ -219,7 +217,7 @@
                                            $posteado=$noticias["POSTEADO"];
 
                                             // numero de comentarios
-                                           $selComen = $conexion->consulta("SELECT * FROM comentarios, inscripcion_proyecto, proyecto, gestion WHERE ID_N='$idNoti' and inscripcion_proyecto.NOMBRE_U = '$uActivo' and inscripcion_proyecto.CODIGO_P = proyecto.CODIGO_P and proyecto.ID_G = gestion.ID_G and DATE (FECHA_C) >= DATE(FECHA_INICIO_G) and DATE(FECHA_C) <= DATE(FECHA_FIN_G)");
+                                           $selComen = $conexion->consulta("SELECT * FROM comentarios WHERE ID_N='$idNoti'");
                                            $comentarios = mysql_num_rows($selComen);
 
                                   ?>

@@ -469,7 +469,7 @@ function registrarPlanificacion() {
         var actividad = actividades.indexOf($(fila).find('td:first').text());
         actividades.splice(actividad, 1);
         $('#registroPlanificacion').data('actividades', actividades.join());
-        $(fila).remove();
+      //  $(fila).remove();
     });
     
     $(document).on('click', '#btnCancelarActividadPlanificacion', function() {

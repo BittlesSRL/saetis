@@ -206,11 +206,11 @@ if (isset($_POST['lista']))
 
                                     $directorioIndex = "../".$nombreUGE."/NC/index.html";
         
-                                    if(!file_exists($directorioIndex))
+                                    /*if(!file_exists($directorioIndex))
                                     {
                                         $directorioIndex = "../".$nombreUGE."/NC/index.html";
                                         fopen($directorioIndex, "x");
-                                    }
+                                    }*/
 
                                     echo"<script type=\"text/javascript\">alert('Se genero correctamente la notificacion de conformidad'); window.location='../Vista/notificacion_conformidad.php';</script>";  
                                                          

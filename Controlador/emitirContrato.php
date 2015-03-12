@@ -109,7 +109,9 @@
                     
                     if (!file_exists($rutaDir)) 
                     {
+                        $oldmask = umask(0); 
                         mkdir($rutaDir, 0777,TRUE);
+                        umask($oldmask);
                         
                         if(!file_exists("../".$nombreUA."/index.html"))
                         {
@@ -147,11 +149,11 @@
                     WHERE `NOMBRE_U` = '$nomGE[0]'");  
                     //rename("Contrato.pdf", $pdf);
 
-                    if(!file_exists("../".$nombreUA."/Contratos/index.html"))
+                   /* if(!file_exists("../".$nombreUA."/Contratos/index.html"))
                     {
                         $directorioIndex = "../".$nombreUA."/Contratos/index.html";
                         fopen($directorioIndex, "x");
-                    }
+                    }*/
                     
                     echo"<script type=\"text/javascript\">alert('Se genero el contrato correctamente'); window.location='../Vista/contrato.php';</script>";                    
                 }

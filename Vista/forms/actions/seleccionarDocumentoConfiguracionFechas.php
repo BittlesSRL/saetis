@@ -1,7 +1,7 @@
 <?php
     
     $conex = new conexion();
-    $cons="SELECT nombre_r FROM registro WHERE tipo_t ='documento requerido' AND nombre_u='$UsuarioActivo'";
+    $cons="SELECT nombre_r FROM registro WHERE tipo_t ='documento requerido' AND nombre_u='$uActivo'";
     
     $a=$conex->consulta($cons);
     

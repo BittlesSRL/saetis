@@ -71,8 +71,6 @@
     <script type="text/javascript" src="../Librerias/lib/validator/numeric.js"></script>
     <script type="text/javascript" src="../Librerias/lib/validator/porcentajeMax.js"></script>
     <script type="text/javascript" src="../Librerias/lib/validator/porcentajeMin.js"></script>
-    <script type="text/javascript" src="../Librerias/lib/validator/integerN.js"></script>
-    <script type="text/javascript" src="../Librerias/lib/validator/porcentajeAc.js"></script>
     <!-- JS -->
     <script type="text/javascript" src="../Librerias/lib/funcion.js"></script>
     
@@ -271,8 +269,9 @@
                         </div>  
                         <?php
 
-                        //Peticion gestion**
-                        $peticion = $conexion->consulta("SELECT  r.nombre_r, p.fecha_inicio_pl, p.hora_inicio_pl, p.fecha_fin_pl, p.hora_fin_pl FROM plazo p, registro r, tipo t, inscripcion_proyecto i, documento_r d, proyecto a, gestion g WHERE t.TIPO_T = r.TIPO_T AND p.ID_R = r.ID_R AND r.TIPO_T =  'documento requerido' AND r.NOMBRE_U = '$asesor' AND i.NOMBRE_U='$uActivo' and  d.CODIGO_P=i.CODIGO_P AND r.ID_R=d.ID_R and i.CODIGO_P = a.CODIGO_P and a.ID_G = g.ID_G and (DATE (p.FECHA_INICIO_PL) >= DATE(FECHA_INICIO_G) and DATE(p.FECHA_FIN_PL) <= DATE(FECHA_FIN_G))");
+                        //Peticion
+                        $peticion = $conexion->consulta("SELECT  r.nombre_r, p.fecha_inicio_pl, p.hora_inicio_pl, p.fecha_fin_pl, p.hora_fin_pl FROM plazo p, registro r, tipo t, inscripcion_proyecto i, documento_r d WHERE t.TIPO_T = r.TIPO_T AND p.ID_R = r.ID_R AND r.TIPO_T =  'documento requerido' AND r.NOMBRE_U = '$asesor' AND i.NOMBRE_U='$uActivo' and  d.CODIGO_P=i.CODIGO_P AND r.ID_R=d.ID_R");
+
 
                         while($fila = mysql_fetch_array($peticion))
                         {
@@ -373,9 +372,7 @@
                         </div>  
                         <?php
 
-                        //$peticion = $conexion->consulta("SELECT registro.ID_R,registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R  FROM registro, receptor  WHERE  registro.ID_R=receptor.ID_R  and   (RECEPTOR_R='$grupoEmpresaNL' OR RECEPTOR_R='TODOS')");
-                        //gestion**
-                        $peticion = $conexion->consulta("SELECT registro.ID_R,registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R  FROM registro, receptor, inscripcion_proyecto, proyecto, gestion  WHERE  registro.ID_R=receptor.ID_R  and   (RECEPTOR_R='$grupoEmpresaNL' OR RECEPTOR_R='TODOS') and inscripcion_proyecto.CODIGO_P = proyecto.CODIGO_P and proyecto.ID_G = gestion.ID_G and (DATE (registro.FECHA_R) > DATE(FECHA_INICIO_G) and DATE(registro.FECHA_R) < DATE(FECHA_FIN_G))");
+                        $peticion = $conexion->consulta("SELECT registro.ID_R,registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R  FROM registro, receptor  WHERE  registro.ID_R=receptor.ID_R  and   (RECEPTOR_R='$grupoEmpresaNL' OR RECEPTOR_R='TODOS')");
 
 
                         while($fila = mysql_fetch_array($peticion))

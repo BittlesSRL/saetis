@@ -96,7 +96,7 @@
       case 'registrar seguimiento':
       $conexion = new Conexion();
       $conexion->conectar();
-      $fechas=$conexion->consulta("SELECT DISTINCT `FECHA_S` FROM seguimiento WHERE seguimiento.GRUPO_S='$u' ORDER BY FECHA_S DESC");
+      $fechas=$conexion->consulta("SELECT DISTINCT `FECHA_S` FROM seguimiento WHERE seguimiento.GRUPO_S='$u' ORDER BY FECHA_S DESC ");
       
       
       ?>
@@ -113,9 +113,11 @@
          echo "<div class='bs-callout bs-callout-info'>
               <h4>".$fechaArr."</h4>
           </div>";
-         $peticionGE = $conexion->consulta("SELECT `ROL_S`,`ACTIVIDAD_S`,`HECHO_S`,`RESULTADO_S`,`CONCLUSION_S`,`OBSERVACION_S` ,`FECHA_S` FROM seguimiento WHERE seguimiento.GRUPO_S='$u' ORDER BY FECHA_S DESC");
+          $peticionGE = $conexion->consulta("SELECT `ROL_S`,`ACTIVIDAD_S`,`HECHO_S`,`RESULTADO_S`,`CONCLUSION_S`,`OBSERVACION_S`  FROM seguimiento WHERE seguimiento.GRUPO_S='$u' AND FECHA_S ='$fechaArr'");
+        
              while ($seguimiento = mysql_fetch_array($peticionGE))
             { 
+
 
                 $rolGE=$seguimiento[0];
                 $actividad=$seguimiento[1];
@@ -123,11 +125,9 @@
                 $resultado=$seguimiento[3];
                 $conclusion=$seguimiento[4];
                 $obserGE=$seguimiento[5];
-                $fechaActual=$seguimiento[6];
+               
 
-              if($fechaArr == $fechaActual)  
-              {
-                
+              
                 if($hechoGE=="1")
                 {
                   $hechoGE1="si";
@@ -136,6 +136,7 @@
                 {
                   $hechoGE1="no";
                 }
+               
                 $tabla="<b>Rol:</b> ".$rolGE."</br>
                 <b>Hecho:</b> ".$hechoGE1."</br>";
 
@@ -187,12 +188,9 @@
                                        </td>
                                        
                                    </tr>";
-                }
+                
                  
-                else
-                {
-
-                }
+               
                 $tabla.=" </thead> 
                 </table> </fieldset></form></div>";
                 echo $tabla;

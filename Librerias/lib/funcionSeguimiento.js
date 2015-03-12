@@ -239,7 +239,7 @@ function registrarReportesSemanal() {
                     $('#registroRol').hide();
                     $('#registroReportes').find('legend').text('Registro de reportes');
                     $('#registroReportes').find('form').children().show();
-                    //$('option[value="'+rol+'"]', $('#registroRol').find('form').find('[name="roles"]')).remove();
+                    $('option[value="'+rol+'"]', $('#registroRol').find('form').find('[name="roles"]')).remove();
                     $('#registroRol').find('form').find('[name="roles"]').multiselect('rebuild');
 
                     $('#registroReportes').find('form')
