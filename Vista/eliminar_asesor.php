@@ -38,11 +38,13 @@ $idAsesor = $_GET['id_us'];
                 {
                     $idRegis=$filaR[0];
                     $delDesc=$conect->consulta(" DELETE FROM `descripcion` WHERE ID_R='$idRegis'");
+                    $delSeguimi = $conect->consulta("DELETE FROM seguimiento WHERE ID_R = '$idRegis' ");
                     $delDoc=$conect->consulta(" DELETE FROM `documento` WHERE ID_R='$idRegis'");
                     $delPer = $conect->consulta("DELETE FROM periodo WHERE ID_R = '$idRegis' ");
                     $delPlazo = $conect->consulta("DELETE FROM plazo WHERE ID_R = '$idRegis' ");
                     $delRecp = $conect->consulta("DELETE FROM receptor WHERE ID_R = '$idRegis' ");
                     $delRg = $conect->consulta("DELETE FROM registro WHERE ID_R = '$idRegis' ");
+                    
                  }
              }
              
