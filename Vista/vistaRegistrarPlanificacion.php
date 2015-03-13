@@ -204,6 +204,7 @@
                 $actividadesPlanificacion = '<select class="btn-primary" name="actividades" multiple="multiple">';
                 for ($i = 0; $i < count($ap); $i++) { 
                     $f = new FechaRealizacion($ap[$i][0]);
+
                     $actividadesPlanificacion .= '<option data-fecha="'.$f->getFecha().'" value="'.$ap[$i][1].'">'.$ap[$i][1].'</option>';
                 }
                 $actividadesPlanificacion .= '</select>';

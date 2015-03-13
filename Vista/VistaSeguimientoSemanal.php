@@ -36,7 +36,7 @@
 	                           </button>';
 
 	    $conexion->conectar();
-	    $sel_hito = $conexion->consulta("SELECT * FROM registro WHERE FECHA_R = '$FechaActual' AND NOMBRE_U='$grupo' AND TIPO_T='actividad planificacion'");  
+	    $sel_hito = $conexion->consulta("SELECT * FROM registro,fecha_realizacion WHERE fecha_realizacion.FECHA_FR = '$FechaActual' AND NOMBRE_U='$grupo' AND TIPO_T='actividad planificacion' AND registro.ID_R = fecha_realizacion.ID_R");  
 
 	    if(mysql_num_rows($sel_hito) > 0)
 	    {

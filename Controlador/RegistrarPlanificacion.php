@@ -66,6 +66,7 @@
 				   </div>
 				   <script>$("#page-wrapper").load("vistaRegistrarPlanificacion.php");</script>');
             break;
+
         case 'registrar plan pagos':
 			$actividades = explode(',', $_POST['actividades']);
 			$fechas = explode(',', $_POST['fechas']);
@@ -83,10 +84,13 @@
 
 				$registro = new Registro($usuario, 'pago planificacion', 'en proceso', $actividad, $fechaActual, $horaActual);
 				$registro->insertarBD();
+
 				$fechaRealizacion = new FechaRealizacion($registro->getId(), $fecha);
 				$fechaRealizacion->insertarBD();
+
 				$pago = new Pago($registro->getId(), $monto, $porcentaje);
 				$pago->insertarBD();
+
 				for ($j = 0; $j < count($entregable); $j++) { 
 					//$e = $entregable[$j];
 					$entrega = new Entrega($registro->getId(), $entregable[$j], 0);
@@ -95,6 +99,7 @@
 			}
 			$planificacion->setEstado('planificacion registrada');
 			$planificacion->modificarBD();
+			
 			echo ('<div class="alert alert-success">
 				       <strong>Planificacion registrada...</strong>
 				   </div>');
